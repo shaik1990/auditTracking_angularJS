@@ -1,0 +1,206 @@
+body {
+    background-color: #f3f3f3;
+}
+
+#mainPage{
+    position: absolute;
+    top:10px;
+    left: 10px;
+    width: 98%;
+    height: 98%;
+}
+
+#logo{
+    height: 50px;
+    width: 100%;
+    background-color: black;
+    color: white;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#logoImage{
+    position: absolute;
+    top: 0;
+    left: 20px;
+    height: 50px;
+    width: 50px;
+}
+
+#logoText{
+    position: absolute;
+    top: 0;
+    left: 80px;
+    height: 50px;
+}
+
+#menu{
+    height: 40px;
+    width: 100%;
+    background-color: #dcdcdc;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    border-bottom: 1px solid #bfbfbf;
+}
+
+
+#menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 1px solid #e7e7e7;
+    height: 100%;
+}
+
+#menu li {
+    float: left;
+    height: 100%;
+}
+
+#menu li a {
+    display: block;
+    color: #666;
+    text-align: center;
+    padding: 12px;
+    text-decoration: none;
+}
+
+#menu li a:hover:not(.active) {
+    background-color: #ddd;
+}
+
+#menu li a.active {
+    color: white;
+    background-color: #4CAF50;
+}
+
+#columnGroups{
+    height: 50px;
+    width: 100%;
+    background-color: #d5f0f9;
+    position: absolute;
+    top: 90px;
+    left: 0;
+}
+
+#columnGroups ul {
+    position: absolute;
+    left: 20px;
+    top: 12px;
+    height: 100%;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+#columnGroups li {
+    float: left;
+    width: 80px;
+}
+
+#columnGroups li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 18px;
+    text-decoration: none;
+}
+
+#columnGroups li a:hover {
+    background-color: #111111;
+}
+
+.groupsDownArrow {
+    font-size: 12px;
+}
+
+#searchArea{
+    height: 30px;
+    width: 95%;
+    position: absolute;
+    top: 160px;
+    left: 0;
+}
+
+#searchLabel {
+    float: left;
+    height: 20px;
+    width: 200px;
+    font-size: 15px;
+}
+
+#searchInput {
+    float: left;
+    height: 20px;
+    width: 200px;
+    font-size: 15px;
+}
+
+#searchButton {
+    float: left;
+    height: 20px;
+    width: 100px;
+}
+
+#refreshButton {
+    float: right;
+    height: 20px;
+    width: 100px;
+}
+
+#searchButton {
+    float: right;
+    height: 20px;
+    width: 100px;
+}
+
+#gridsArea {
+    position: absolute;
+    top: 200px;
+    left: 0;
+    height: 550px;
+    width: 100%;
+}
+
+#myGrid{
+    background-color: white;
+    height: 100%;
+    width: 70%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: scroll;
+}
+#charts{
+    background-color: white;
+    float: right;
+    height: 100%;
+    width: 20%;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td {
+    text-align: left;
+    padding: 8px;
+    border: 1px solid gray;
+    height: 20px;
+}
+
+tr {
+    height: 20px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+.gridColumnHeader {
+    background-color: #4CAF50;
+    color: white;
+}

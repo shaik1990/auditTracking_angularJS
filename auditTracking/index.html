@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="auditApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/myStyles.css">
+</head>
+<body ng-controller="appController">
+    <div id="loginPage" ng-show="showLoginPage">
+        This is login page.
+        <p>username</p>
+        <input type="text">
+        <p>password</p>
+        <input type="text">
+        <button ng-click="loginClick()">login</button>
+    </div>
+
+    <div id="mainPage" ng-show="showMainPage">
+        <div id="logo">
+            <img src="images/logo.png" id="logoImage">
+            <p id="logoText">This site belongs to Verisign</p>
+        </div>
+        <div id="menu">
+            <ul>
+                <li><a ng-click="menuClick('Core')">Core</a></li>
+                <li><a ng-click="menuClick('Shared')">Shared</a></li>
+                <li><a ng-click="menuClick('MHP')">MHP</a></li>
+                <li><a ng-click="menuClick('Colo')">Colo</a></li>
+                <li><a ng-click="menuClick('Backbone')">Backbone</a></li>
+            </ul>
+        </div>
+        <div id="columnGroups">
+            <ul>
+                <li>Group1 <i class="groupsDownArrow">&#x25BC</i></li>
+                <li>Group2 <i class="groupsDownArrow">&#x25BC</i></li>
+                <li>Group3 <i class="groupsDownArrow">&#x25BC</i></li>
+                <li>Group4 <i class="groupsDownArrow">&#x25BC</i></li>
+                <li>Group5 <i class="groupsDownArrow">&#x25BC</i></li>
+                <li>Group6 <i class="groupsDownArrow">&#x25BC</i></li>
+                <li>Group7 <i class="groupsDownArrow">&#x25BC</i></li>
+                <li>Group8 <i class="groupsDownArrow">&#x25BC</i></li>
+            </ul>
+        </div>
+
+        <div id="searchArea">
+            <label id="searchLabel">Search by Id:</label>
+            <input id="searchInput" type="text">
+            <button id="searchButton">Search</button>
+            <button id="saveButton">Save</button>
+            <button id="refreshButton">Refresh</button>
+        </div>
+        <div id="gridsArea">
+            <div id="myGrid">
+                <div id="dashBoard" ng-show="showDashboard">
+                    Welcome to Verisign
+                </div>
+                <div id="coreGrid" ng-show="showCore" core-Directive>
+
+                </div>
+                <div id="sharedGrid" ng-show="showShared">
+                    this is shared grid
+                </div>
+                <div id="mhpGrid" ng-show="showMHP">
+                    This is MHP grid
+                </div>
+                <div id="coloGrid" ng-show="showColo">
+                    This is colo grid
+                </div>
+                <div id="backboneGrid" ng-show="showBackbone">
+                    This is backboneGrid
+                </div>
+            </div>
+
+            <div id="charts"></div>
+        </div>
+
+    </div>
+
+    <script type="text/javascript" src="js/angular.min.js"></script>
+    <script type="text/javascript" src="js/appController.js"></script>
+    <script type="text/javascript" src="js/tableDirectives.js"></script>
+</body>
+</html>
