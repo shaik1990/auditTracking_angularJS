@@ -1,0 +1,256 @@
+body {
+    background-color: #f3f3f3;
+}
+
+#mainPage{
+    position: absolute;
+    top:10px;
+    left: 10px;
+    width: 98%;
+    height: 98%;
+}
+
+#logo{
+    height: 50px;
+    width: 100%;
+    background-color: black;
+    color: white;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#logoImage{
+    position: absolute;
+    top: 0;
+    left: 20px;
+    height: 50px;
+    width: 150px;
+}
+
+#logoText{
+    position: absolute;
+    top: 0;
+    left: 80px;
+    height: 50px;
+}
+
+#menu{
+    height: 40px;
+    width: 100%;
+    background-color: #dcdcdc;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    border-bottom: 1px solid #bfbfbf;
+}
+
+
+#menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 1px solid #e7e7e7;
+    height: 100%;
+}
+
+#menu li {
+    float: left;
+    height: 100%;
+}
+
+#menu li a {
+    display: block;
+    color: #666;
+    text-align: center;
+    padding: 12px;
+    text-decoration: none;
+}
+
+.menuItems:hover:not(.active) {
+    background-color: #ddd;
+}
+
+.menuItems.active {
+    color: white;
+    background-color: #4CAF50;
+}
+
+.menuItems{
+    cursor: pointer;
+}
+
+.colGroupsItems{
+    cursor: pointer;
+}
+
+#colGroupsText{
+    cursor: default;
+}
+
+#columnGroups{
+    height: 50px;
+    width: 100%;
+    background-color: #d5f0f9;
+    position: absolute;
+    top: 90px;
+    left: 0;
+    overflow: visible;
+}
+
+#columnGroups ul {
+    position: absolute;
+    left: 14px;
+    top: 12px;
+    height: 100%;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+#columnGroups li {
+    float: left;
+    width: 150px;
+}
+
+#columnGroups li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 18px;
+    text-decoration: none;
+}
+
+#columnGroups li a:hover {
+    background-color: #111111;
+}
+
+.groupsDownArrow {
+    font-size: 12px;
+}
+
+.groupsDropdown{
+    border: 1px solid #bfbfbf;
+    background-color: white;
+    position: absolute;
+    z-index: 1;
+    border-radius: 2px;
+}
+
+#groupAfDropDown{
+    left: 200px;
+    top: 40px;
+}
+
+#groupGlDropDown{
+    left: 350px;
+    top: 40px;
+}
+
+#groupMsDropDown{
+    left: 500px;
+    top: 40px;
+}
+
+#groupTzDropDown{
+    left: 650px;
+    top: 40px;
+}
+
+#groupStatusDropDown{
+    left: 800px;
+    top: 40px;
+}
+
+.groupDropdownButton{
+    float: right;
+    height: 25px;
+    width: 100px;
+    margin-top: 20px;
+    margin-right: 5px;
+}
+
+#buttonsArea{
+    height: 30px;
+    width: 70%;
+    position: absolute;
+    top: 165px;
+    left: 0;
+}
+
+#deleteRowsButton {
+    float: right;
+    height: 25px;
+    width: 100px;
+    margin-right: 20px;
+}
+
+#cancelButton {
+    float: right;
+    height: 25px;
+    width: 100px;
+    margin-right: 20px;
+}
+
+#saveButton {
+    float: right;
+    height: 25px;
+    width: 100px;
+}
+
+#gridsArea {
+    position: absolute;
+    top: 200px;
+    left: 0;
+    height: 550px;
+    width: 100%;
+}
+
+#myGrid{
+    border: 1px solid #bfbfbf;
+    height: 100%;
+    width: 70%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+#charts{
+    background-color: white;
+    float: right;
+    height: 100%;
+    width: 20%;
+}
+
+#myGrid td{
+    width: 150px !important;
+    height: 18px;
+}
+#myGrid th{
+    width: 150px !important;
+    height: 20px;
+}
+
+#myGrid .ngReactGrid table tr td:first-child, #myGrid .ngReactGrid table tr th:first-child {
+    width: 20px !important;
+}
+
+.ngGridHeaderCellText{
+    height: 20px;
+    font-size: 15px;
+}
+
+.ngReactGrid .ngReactGridViewPort{
+    overflow: scroll !important;
+}
+
+.ngReactGridSelectField{
+    border: 0;
+}
+.ngReactGrid table tr:nth-child(odd) td .ngReactGridSelectField{
+    background: #f5f5f5;
+}
+.ngReactGrid table tr:nth-child(even) td .ngReactGridSelectField{
+    background-color: white;
+}

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="auditApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="components/ngReactGrid/css/ngReactGrid.css">
+    <link rel="stylesheet" href="css/myStyles.css">
+</head>
+<body ng-controller="myController">
+    <div id="mainPage">
+        <div id="logo">
+            <img src="images/logo.png" id="logoImage">
+        </div>
+        <div id="menu">
+            <ul>
+                <li><a class="menuItems" ng-click="menuClick('Core')">Core</a></li>
+                <li><a class="menuItems" ng-click="menuClick('Shared')">Shared</a></li>
+                <li><a class="menuItems" ng-click="menuClick('MHP')">MHP</a></li>
+                <li><a class="menuItems" ng-click="menuClick('Colo')">Colo</a></li>
+                <li><a class="menuItems" ng-click="menuClick('Backbone')">Backbone</a></li>
+            </ul>
+        </div>
+        <div id="columnGroups">
+            <ul ng-show="showColumnGroups">
+                <li id="colGroupsText"> Select Columns:</li>
+                <li class="colGroupsItems" ng-click="groupMenuClick('A-F')">A-F <i class="groupsDownArrow">&#x25BC</i></li>
+                <li class="colGroupsItems" ng-click="groupMenuClick('G-L')">G-L <i class="groupsDownArrow">&#x25BC</i></li>
+                <li class="colGroupsItems" ng-click="groupMenuClick('M-S')">M-S <i class="groupsDownArrow">&#x25BC</i></li>
+                <li class="colGroupsItems" ng-click="groupMenuClick('T-Z')">T-Z <i class="groupsDownArrow">&#x25BC</i></li>
+                <li class="colGroupsItems" ng-click="groupMenuClick('Status')">Status <i class="groupsDownArrow">&#x25BC</i></li>
+            </ul>
+            <div id="groupAfDropDown" class="groupsDropdown" ng-show="showAfDropDown">
+                <table id="groupDropDown1" class="groupsDropDownTable">
+                    <tr class="groupsDropDownRow" ng-repeat="x in groupAF">
+                        <td class="groupsDropDownCell"><input type="checkbox" ng-model="x.value"></td>
+                        <td class="groupsDropDownCell"><label>{{x.key}}</label></td>
+                    </tr>
+                </table>
+                <button class ="groupDropdownButton" id="groupAfButton" ng-click="doneClick()" >Done</button>
+            </div>
+            <div id="groupGlDropDown" class="groupsDropdown" ng-show="showGlDropDown">
+                <table id="groupDropDown2" class="groupsDropDownTable">
+                    <tr class="groupsDropDownRow" ng-repeat="x in groupGL">
+                        <td class="groupsDropDownCell"><input type="checkbox" ng-model="x.value"></td>
+                        <td class="groupsDropDownCell"><label>{{x.key}}</label></td>
+                    </tr>
+                </table>
+                <button class ="groupDropdownButton" id="groupGlButton" ng-click="doneClick()" >Done</button>
+            </div>
+            <div id="groupMsDropDown" class="groupsDropdown" ng-show="showMsDropDown">
+                <table id="groupDropDown3" class="groupsDropDownTable">
+                    <tr class="groupsDropDownRow" ng-repeat="x in groupMS">
+                        <td class="groupsDropDownCell"><input type="checkbox" ng-model="x.value"></td>
+                        <td class="groupsDropDownCell"><label>{{x.key}}</label></td>
+                    </tr>
+                </table>
+                <button class ="groupDropdownButton" id="groupMsButton" ng-click="doneClick()" >Done</button>
+            </div>
+            <div id="groupTzDropDown" class="groupsDropdown" ng-show="showTzDropDown">
+                <table id="groupDropDown4" class="groupsDropDownTable">
+                    <tr class="groupsDropDownRow" ng-repeat="x in groupTZ">
+                        <td class="groupsDropDownCell"><input type="checkbox" ng-model="x.value"></td>
+                        <td class="groupsDropDownCell"><label>{{x.key}}</label></td>
+                    </tr>
+                </table>
+                <button class ="groupDropdownButton" id="groupTzButton" ng-click="doneClick()" >Done</button>
+            </div>
+            <div id="groupStatusDropDown" class="groupsDropdown" ng-show="showStatusDropDown">
+                <table id="groupDropDown5" class="groupsDropDownTable">
+                    <tr class="groupsDropDownRow" ng-repeat="x in groupStatus">
+                        <td class="groupsDropDownCell"><input type="checkbox" ng-model="x.value"></td>
+                        <td class="groupsDropDownCell"><label>{{x.key}}</label></td>
+                    </tr>
+                </table>
+                <button class ="groupDropdownButton" id="groupStatusButton" ng-click="doneClick()" >Done</button>
+            </div>
+        </div>
+
+        <div id="buttonsArea" ng-show="showButtons">
+            <button id="saveButton" ng-click="saveClick()">Save</button>
+            <button id="cancelButton" ng-click="cancelClick()">Cancel</button>
+            <button id="deleteRowsButton" ng-click="deleteRowsClick()">Delete Rows</button>
+        </div>
+        <div id="gridsArea">
+            <div id="myGrid">
+                <div id="dashBoard" ng-show="showDashboard">
+                    <p>Dashboard coming soon!!!!</p>
+                </div>
+                <div id="coreGrid" ng-show="showCore">
+                    <ng-react-grid grid="coreGrid"></ng-react-grid>
+                </div>
+                <div id="sharedGrid" ng-show="showShared">
+                    <ng-react-grid grid="sharedGrid"></ng-react-grid>
+                </div>
+                <div id="mhpGrid" ng-show="showMHP">
+                    <ng-react-grid grid="mhpGrid"></ng-react-grid>
+                </div>
+                <div id="coloGrid" ng-show="showColo">
+                    <ng-react-grid grid="coloGrid"></ng-react-grid>
+                </div>
+                <div id="backboneGrid" ng-show="showBackbone">
+                    <ng-react-grid grid="backboneGrid"></ng-react-grid>
+                </div>
+            </div>
+
+            <div id="charts">
+                <p>Charts coming soon!!!</p>
+            </div>
+
+        </div>
+    </div>
+
+    <script type="text/javascript" src="components/angular.min.js"></script>
+    <script type="text/javascript" src="components/react.js"></script>
+    <script type="text/javascript" src="components/ngReactGrid/js/ngReactGrid.js"></script>
+    <script type="text/javascript" src="js/appController.js"></script>
+    <script type="text/javascript" src="js/tableDirectives.js"></script>
+</body>
+</html>
