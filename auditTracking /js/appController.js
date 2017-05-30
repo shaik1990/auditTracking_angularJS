@@ -53,6 +53,11 @@ app.controller("myController",['$scope', '$timeout', 'ngReactGridCheckbox',funct
         }
     };
 
+    $scope.groupAF = [];
+    $scope.groupGL = [];
+    $scope.groupMS = [];
+    $scope.groupTZ = [];
+    $scope.groupStatus = [];
     $scope.showAfDropDown = false;
     $scope.showGlDropDown = false;
     $scope.showMsDropDown = false;
@@ -101,42 +106,41 @@ app.controller("myController",['$scope', '$timeout', 'ngReactGridCheckbox',funct
     $scope.backboneSelections = [];
 
     $scope.deleteRowsClick = function(){
-/*
+        var params = [];
+        if($scope.coreSelections.length === 0 && $scope.sharedSelections.length === 0
+            && $scope.mhpSelections.length === 0 && $scope.coloSelections.length === 0
+            && $scope.backboneSelections.length === 0){
+            return;
+        }
         for(var i = 0; i < $scope.coreSelections.length; i++){
             $scope.coreData.splice($scope.coreData.indexOf($scope.coreSelections[i]),1)
+            params.push({"host_id" : $scope.coreSelections[i].host_id})
         }
         for(var j = 0; j < $scope.sharedSelections.length; j++){
             $scope.sharedData.splice($scope.sharedData.indexOf($scope.sharedSelections[j]),1)
+            params.push({"host_id" : $scope.sharedSelections[j].host_id})
         }
         for(var k = 0; k < $scope.mhpSelections.length; k++){
             $scope.mhpData.splice($scope.mhpData.indexOf($scope.mhpSelections[k]),1)
+            params.push({"host_id" : $scope.mhpSelections[k].host_id})
         }
         for(var l = 0; l < $scope.coloSelections.length; l++){
             $scope.coloData.splice($scope.coloData.indexOf($scope.coloSelections[l]),1)
+            params.push({"host_id" : $scope.coloSelections[l].host_id})
         }
         for(var m = 0; m < $scope.backboneSelections.length; m++){
             $scope.backboneData.splice($scope.backboneData.indexOf($scope.backboneSelections[m]),1)
+            params.push({"host_id" : $scope.backboneSelections[m].host_id})
         }
-*/
 
-        if($scope.coreSelections.length === 0){
-            return;
-        }
-        var params = [];
-        for(var i = 0; i < $scope.coreSelections.length; i++){
-            params.push({"host_id": $scope.coreSelections[i].toString()});
-        }
-        //params = [{"host_id" : "1"}];
         params = JSON.stringify(params);
         var xhttp = new XMLHttpRequest();
         xhttp.open("POST", "http://127.0.0.1:8000/auditdatadelete/", true);
         xhttp.setRequestHeader("Content-type", "application/json");
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-                var abc = xhttp.responseText;
-                var fgh = JSON.parse(xhttp.responseText);
-                //scope.coreData = JSON.parse(xhttp.responseText);
-                //scope.coreGrid.data = scope.coreData;
+                alert("Rows deleted successfully. You will now be redirected to Dashboard");
+                angular.element(document.getElementById("cancelButton"))[0].click();
             }
         };
         xhttp.send(params);
@@ -168,16 +172,13 @@ app.controller("myController",['$scope', '$timeout', 'ngReactGridCheckbox',funct
         }
 
         params = JSON.stringify(params);
-        //params = JSON.stringify($scope.coreData);
         var xhttp = new XMLHttpRequest();
         xhttp.open("POST", "http://127.0.0.1:8000/auditdataupdate/", true);
         xhttp.setRequestHeader("Content-type", "application/json");
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
                 var abc = xhttp.responseText;
-                var fgh = JSON.parse(xhttp.responseText);
-                //scope.coreData = JSON.parse(xhttp.responseText);
-                //scope.coreGrid.data = scope.coreData;
+                alert(abc);
             }
         };
         xhttp.send(params);
@@ -201,256 +202,260 @@ app.controller("myController",['$scope', '$timeout', 'ngReactGridCheckbox',funct
         $scope.showBackbone = false;
         $scope.showColumnGroups = false;
         $scope.showButtons = false;
+        $scope.reloadColumnSelections();
         $scope.loadGrids();
         $scope.menuFocus();
     };
 
-    $scope.groupAF = [
-        {
-            key: "Aaa",
-            value: true
-        },
-        {
-            key: "Access_List",
-            value: true
-        },
-        {
-            key: "Accounting_Authorization",
-            value: true
-        },
-        {
-            key: "As_Path_Set",
-            value: true
-        },
-        {
-            key: "Banner",
-            value: true
-        },
-        {
-            key: "Bgp",
-            value: true
-        },
-        {
-            key: "brocade",
-            value: true
-        },
-        {
-            key: "Community",
-            value: true
-        },
-        {
-            key: "Config_Sync",
-            value: true
-        },
-        {
-            key: "Control_Plane",
-            value: true
-        },
-        {
-            key: "Config_Validation",
-            value: true
-        },
-        {
-            key: "Config_validation_review",
-            value: true
-        },
-        {
-            key: "CMS",
-            value: true
-        },
-        {
-            key: "Default_Gateway",
-            value: true
-        }
-    ];
+    $scope.reloadColumnSelections = function(){
 
-    $scope.groupGL = [
-        {
-            key: "Global_Server_Config",
-            value: true
-        },
-        {
-            key: "Gre",
-            value: true
-        },
-        {
-            key: "Healthcheck",
-            value: true
-        },
-        {
-            key: "Interfaces",
-            value: true
-        },
-        {
-            key: "ip_address",
-            value: true
-        },
-        {
-            key: "Ip_Host",
-            value: true
-        },
-        {
-            key: "Logging_Local",
-            value: true
-        },
-        {
-            key: "Logging_Remote",
-            value: true
-        },
-        {
-            key: "Line_Con",
-            value: true
-        }
-    ];
+        $scope.groupAF = [
+            {
+                key: "Aaa",
+                value: true
+            },
+            {
+                key: "Access_List",
+                value: true
+            },
+            {
+                key: "Accounting_Authorization",
+                value: true
+            },
+            {
+                key: "As_Path_Set",
+                value: true
+            },
+            {
+                key: "Banner",
+                value: true
+            },
+            {
+                key: "Bgp",
+                value: true
+            },
+            {
+                key: "brocade",
+                value: true
+            },
+            {
+                key: "Community",
+                value: true
+            },
+            {
+                key: "Config_Sync",
+                value: true
+            },
+            {
+                key: "Control_Plane",
+                value: true
+            },
+            {
+                key: "Config_Validation",
+                value: true
+            },
+            {
+                key: "Config_validation_review",
+                value: true
+            },
+            {
+                key: "CMS",
+                value: true
+            },
+            {
+                key: "Default_Gateway",
+                value: true
+            }
+        ];
 
-    $scope.groupMS = [
-        {
-            key: "Match_List",
-            value: true
-        },
-        {
-            key: "Monitoring",
-            value: true
-        },
-        {
-            key: "Monitor",
-            value: true
-        },
-        {
-            key: "Nat",
-            value: true
-        },
-        {
-            key: "Ntp",
-            value: true
-        },
-        {
-            key: "Ospf",
-            value: true
-        },
-        {
-            key: "Prefix_List",
-            value: true
-        },
-        {
-            key: "product_id",
-            value: true
-        },
-        {
-            key: "Remediation",
-            value: true
-        },
-        {
-            key: "Real_Server",
-            value: true
-        },
-        {
-            key: "Route_Map",
-            value: true
-        },
-        {
-            key: "Route_Policy",
-            value: true
-        },
-        {
-            key: "Static_Routes",
-            value: true
-        },
-        {
-            key: "Snmp",
-            value: true
-        },
-        {
-            key: "Ssh",
-            value: true
-        },
-        {
-            key: "Spanning_Tree",
-            value: true
-        },
-        {
-            key: "Service",
-            value: true
-        },
-        {
-            key: "Service_Group",
-            value: true
-        },
-        {
-            key: "Server_Vip_Group",
-            value: true
-        },
-        {
-            key: "Server_Port",
-            value: true
-        }
-    ];
+        $scope.groupGL = [
+            {
+                key: "Global_Server_Config",
+                value: true
+            },
+            {
+                key: "Gre",
+                value: true
+            },
+            {
+                key: "Healthcheck",
+                value: true
+            },
+            {
+                key: "Interfaces",
+                value: true
+            },
+            {
+                key: "ip_address",
+                value: true
+            },
+            {
+                key: "Ip_Host",
+                value: true
+            },
+            {
+                key: "Logging_Local",
+                value: true
+            },
+            {
+                key: "Logging_Remote",
+                value: true
+            },
+            {
+                key: "Line_Con",
+                value: true
+            }
+        ];
 
-    $scope.groupTZ = [
-        {
-            key: "Tacacs",
-            value: true
-        },
-        {
-            key: "Template_Creation",
-            value: true
-        },
-        {
-            key: "Username",
-            value: true
-        },
-        {
-            key: "Virtual_Server",
-            value: true
-        },
-        {
-            key: "Vlan",
-            value: true
-        }
-    ];
+        $scope.groupMS = [
+            {
+                key: "Match_List",
+                value: true
+            },
+            {
+                key: "Monitoring",
+                value: true
+            },
+            {
+                key: "Monitor",
+                value: true
+            },
+            {
+                key: "Nat",
+                value: true
+            },
+            {
+                key: "Ntp",
+                value: true
+            },
+            {
+                key: "Ospf",
+                value: true
+            },
+            {
+                key: "Prefix_List",
+                value: true
+            },
+            {
+                key: "product_id",
+                value: true
+            },
+            {
+                key: "Remediation",
+                value: true
+            },
+            {
+                key: "Real_Server",
+                value: true
+            },
+            {
+                key: "Route_Map",
+                value: true
+            },
+            {
+                key: "Route_Policy",
+                value: true
+            },
+            {
+                key: "Static_Routes",
+                value: true
+            },
+            {
+                key: "Snmp",
+                value: true
+            },
+            {
+                key: "Ssh",
+                value: true
+            },
+            {
+                key: "Spanning_Tree",
+                value: true
+            },
+            {
+                key: "Service",
+                value: true
+            },
+            {
+                key: "Service_Group",
+                value: true
+            },
+            {
+                key: "Server_Vip_Group",
+                value: true
+            },
+            {
+                key: "Server_Port",
+                value: true
+            }
+        ];
 
-    $scope.groupStatus = [
-        {
-            key: "Process_Not_Started",
-            value: true
-        },
-        {
-            key: "Process_Complete",
-            value: true
-        },
-        {
-            key: "In_Progress_MALT",
-            value: true
-        },
-        {
-            key: "Not_Started",
-            value: true
-        },
-        {
-            key: "Complete",
-            value: true
-        },
-        {
-            key: "In_Progress_NAV",
-            value: true
-        },
-        {
-            key: "In_Progress",
-            value: true
-        },
-        {
-            key: "Not_Started_",
-            value: true
-        },
-        {
-            key: "Completed",
-            value: true
-        },
-        {
-            key: "Process_In_Progress",
-            value: true
-        }
-    ];
+        $scope.groupTZ = [
+            {
+                key: "Tacacs",
+                value: true
+            },
+            {
+                key: "Template_Creation",
+                value: true
+            },
+            {
+                key: "Username",
+                value: true
+            },
+            {
+                key: "Virtual_Server",
+                value: true
+            },
+            {
+                key: "Vlan",
+                value: true
+            }
+        ];
+
+        $scope.groupStatus = [
+            {
+                key: "Process_Not_Started",
+                value: true
+            },
+            {
+                key: "Process_Complete",
+                value: true
+            },
+            {
+                key: "In_Progress_MALT",
+                value: true
+            },
+            {
+                key: "Not_Started",
+                value: true
+            },
+            {
+                key: "Complete",
+                value: true
+            },
+            {
+                key: "In_Progress_NAV",
+                value: true
+            },
+            {
+                key: "In_Progress",
+                value: true
+            },
+            {
+                key: "Not_Started_",
+                value: true
+            },
+            {
+                key: "Completed",
+                value: true
+            },
+            {
+                key: "Process_In_Progress",
+                value: true
+            }
+        ];
+    };
 
     $scope.reloadGrids = function(){
         for(var i = 0; i < $scope.groupAF.length; i++){
@@ -771,6 +776,7 @@ app.controller("myController",['$scope', '$timeout', 'ngReactGridCheckbox',funct
     };
 
     $scope.loadGrids = function(){
+        $scope.reloadColumnSelections();
         $scope.initializeGrids();
         $scope.loadGridsData();
     };
